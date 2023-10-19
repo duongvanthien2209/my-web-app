@@ -21,13 +21,15 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-      - name: Cache node_modules front end
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/front-end/node_modules/
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - cache-node-modules-front
+#      - name: Cache node_modules front end
+#        uses: actions/cache@v3
+#        with:
+#          path: ${{ github.workspace }}/front-end/node_modules/
+#          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+#          restore-keys: |
+#            - cache-node-modules-front
 
       - name: Run Unit Test
-        run: cd ./front-end && npm run test:all
+        run: | 
+          cd ./front-end
+          npm run test:all

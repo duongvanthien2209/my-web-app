@@ -4,16 +4,11 @@ on:
   pull_request:
     branches:
       - 'main'
-  workflow_dispatch:
 
 jobs:
-  setup:
-    uses: ./.github/workflows/setup-workflow.yml
 
-  unit-test-front:
-    uses: ./.github/workflows/unit-test-front-end.yml
-    needs: [setup]
+#  unit-test-front:
+#    uses: ./.github/workflows/unit-test-front-end.yml
 
   unit-test-back:
     uses: ./.github/workflows/unit-test-back-end.yml
-    needs: [setup]

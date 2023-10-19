@@ -21,23 +21,20 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'npm'
 
-#      - name: Cache node_modules front end
-#        uses: actions/cache@v3
-#        with:
-#          path: ${{ github.workspace }}/front-end/node_modules/
-#          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-#          restore-keys: |
-#            - cache-node-modules-front
-            
+      - name: Install back end dependencies
+        run: |
+          cd ./back-end-side
+          npm ci
+          npm audit --audit-level=critical
+        working-directory: ./backend
+
       - name: Cache node_modules back end
         uses: actions/cache@v3
         with:
-          path: ${{ github.workspace }}/back-end/node_modules/
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - cache-node-modules-back
+          path: ./backend/node_modules/
+          key: cache-node-modules-${{ hashFiles('backend/package-lock.json') }}
 
-      - name: Setup
+      - name: Run Unit Test
         run: |
-          npm ci
-          npm audit --audit-level=critical
+          cd ./back-end-side
+          npm run test
