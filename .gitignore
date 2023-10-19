@@ -1,0 +1,75 @@
+# Back end
+# ------------
+# compiled output
+/back-end-side/node_modules
+/back-end-side/dist
+
+# Logs
+/back-end-side/logs
+/back-end-side/*.log
+/back-end-side/npm-debug.log*
+/back-end-side/pnpm-debug.log*
+/back-end-side/yarn-debug.log*
+/back-end-side/yarn-error.log*
+/back-end-side/lerna-debug.log*
+
+# OS
+/back-end-side/.DS_Store
+
+# Tests
+/back-end-side/coverage
+/back-end-side/.nyc_output
+
+# IDEs and editors
+/back-end-side/.idea
+/back-end-side/.project
+/back-end-side/.classpath
+/back-end-side/.c9/
+/back-end-side/*.launch
+/back-end-side/.settings/
+/back-end-side/*.sublime-workspace
+
+# IDE - VSCode
+/back-end-side/.vscode/*
+!/back-end-side/.vscode/settings.json
+!/back-end-side/.vscode/tasks.json
+!/back-end-side/.vscode/launch.json
+!/back-end-side/.vscode/extensions.json
+
+# Front end
+# ------------
+# dependencies
+/front-end/node_modules
+/front-end/.pnp
+/front-end/.pnp.js
+
+# testing
+/front-end/coverage
+
+# next.js
+/front-end/.next/
+/front-end/out/
+
+# production
+/front-end/build
+
+# misc
+/front-end/.DS_Store
+/front-end/*.pem
+
+# debug
+/front-end/npm-debug.log*
+/front-end/yarn-debug.log*
+/front-end/yarn-error.log*
+
+# local env files
+/front-end/.env*.local
+
+# vercel
+/front-end/.vercel
+
+# typescript
+/front-end/*.tsbuildinfo
+/front-end/next-env.d.ts
+
+# --------------------------------------------------------- #

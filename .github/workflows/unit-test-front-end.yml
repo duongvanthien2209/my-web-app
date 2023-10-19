@@ -1,4 +1,4 @@
-name: Unit Test Workflow
+name: Unit Test Front End Workflow
 
 on:
   workflow_call:
@@ -29,13 +29,5 @@ jobs:
           restore-keys: |
             - cache-node-modules-front
 
-      - name: Cache node_modules back end
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/back-end/node_modules/
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - cache-node-modules-back
-
       - name: Run Unit Test
-        run: npm run test:all
+        run: cd ./front-end && npm run test:all
