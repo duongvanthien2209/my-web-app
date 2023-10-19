@@ -1,0 +1,41 @@
+name: Unit Test Workflow
+
+on:
+  workflow_call:
+
+jobs:
+  unit-test:
+    name: unit test
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    strategy:
+      matrix:
+        node-version: [20.x]
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: ${{ matrix.node-version }}
+          cache: 'npm'
+
+      - name: Cache node_modules front end
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/front-end/node_modules/
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            - cache-node-modules-front
+
+      - name: Cache node_modules back end
+        uses: actions/cache@v3
+        with:
+          path: ${{ github.workspace }}/back-end/node_modules/
+          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
+          restore-keys: |
+            - cache-node-modules-back
+
+      - name: Run Unit Test
+        run: npm run test:all
