@@ -21,7 +21,6 @@ jobs:
 
       - name: Build Docker Image
         run: docker build -t thien3324/example-webapp:latest .
-        working-directory: ./app
 
       - name: Push Docker Image
         run: docker push thien3324/example-webapp:latest
