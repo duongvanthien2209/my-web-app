@@ -5,7 +5,7 @@ on:
 
 jobs:
   unit-test:
-    name: unit test
+    name: unit test back end
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -19,15 +19,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-      - name: Cache node_modules back end
-        uses: actions/cache@v3
-        with:
-          path: ${{ github.workspace }}/back-end/node_modules/
-          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-          restore-keys: |
-            - cache-node-modules-back
+      - name: Install back end dependencies
+        run: |
+          cd ./back-end-side
+          npm ci
+          npm audit --audit-level=critical
 
       - name: Run Unit Test
-        run: cd ./back-end-side && npm run test
+        run: |
+          cd ./back-end-side
+          npm run test
