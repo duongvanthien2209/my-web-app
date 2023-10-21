@@ -22,7 +22,6 @@ jobs:
           AWS_REGION: eu-west-1
           AWS_ACCOUNT_ID: 307891573463
         with:
-          # Pulls a specific version of the AWS CLI with ECR support
           aws-cli-version: 2.x
 
       - name: Build Docker Image
