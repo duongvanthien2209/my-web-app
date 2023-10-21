@@ -16,17 +16,17 @@ jobs:
       - name: Login to AWS ECR
         run: |
           aws ecr get-login-password --region <AWS_REGION>
-          docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
+#          docker login --username AWS --password-stdin <AWS_ACCOUNT_ID>.dkr.ecr.<AWS_REGION>.amazonaws.com
         env:
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AWS_REGION: eu-west-1
           AWS_ACCOUNT_ID: 307891573463
 
-      - name: Build Docker Image
-        run: | 
-          docker build -t databuckets .
-          docker tag databuckets:latest 307891573463.dkr.ecr.eu-west-1.amazonaws.com/databuckets:latest
-
-      - name: Push Docker Image to ECR
-        run: docker push 307891573463.dkr.ecr.eu-west-1.amazonaws.com/databuckets:latest
+#      - name: Build Docker Image
+#        run: |
+#          docker build -t databuckets .
+#          docker tag databuckets:latest 307891573463.dkr.ecr.eu-west-1.amazonaws.com/databuckets:latest
+#
+#      - name: Push Docker Image to ECR
+#        run: docker push 307891573463.dkr.ecr.eu-west-1.amazonaws.com/databuckets:latest
