@@ -5,7 +5,7 @@ on:
 
 jobs:
   unit-test:
-    name: unit test
+    name: unit test front end
     runs-on: ubuntu-latest
     timeout-minutes: 30
 
@@ -19,17 +19,14 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node-version }}
-          cache: 'npm'
 
-#      - name: Cache node_modules front end
-#        uses: actions/cache@v3
-#        with:
-#          path: ${{ github.workspace }}/front-end/node_modules/
-#          key: cache-node-modules-${{ hashFiles('package-lock.json') }}
-#          restore-keys: |
-#            - cache-node-modules-front
+      - name: Install front end dependencies
+        run: |
+          cd ./front-end
+          npm ci
+          npm audit --audit-level=critical
 
       - name: Run Unit Test
-        run: | 
+        run: |
           cd ./front-end
           npm run test:all
