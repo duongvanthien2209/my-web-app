@@ -1,13 +1,12 @@
 name: Publish Docker Image to ECR
 
 on:
-  push:
-    branches:
-      - main
+  workflow_call:
+
 
 jobs:
   build-and-push:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
